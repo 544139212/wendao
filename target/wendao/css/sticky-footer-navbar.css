@@ -1,0 +1,321 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 70px; /*change*/
+}
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 0 15px; /*change*/
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+
+
+
+/*add*/
+.footer {
+    background-color: #222;
+    border-color: #080808;
+    font-family: Arial,simsun;
+    font-size: 12px;
+    text-align: center;
+}
+.q-nav-sp span {
+    border-right: 1px solid #52B8DA;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 12px;
+    line-height: 12px;
+    margin-top: 19px;
+}
+		
+
+
+a {
+	color: #555;
+}
+
+a:focus, a:hover {
+	color: #428bca;
+	/* color: #45B6F7; */
+}
+
+a, a:active, a:focus, a:hover {
+    outline: 0px none;
+    text-decoration: none;
+}
+
+a.disabled {
+	pointer-events: none;
+	cursor: not-allowed;
+	box-shadow: none;
+	opacity: 0.65;
+}
+
+:focus {
+    outline: 0 none;
+}
+
+img {border:none;/*border for ie browser*/}
+.shadow {-webkit-box-shadow:0px 5px 10px #AAAAAA; -moz-box-shadow:0px 5px 10px #AAAAAA; box-shadow:0px 5px 10px #AAAAAA;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#DDDDDD', Direction=135, Strength=7);/*filter for ie6,7,8*/
+}
+
+/* tag */
+/* .bg-label {
+	padding: 0 5px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+.bg-label {
+	background-color: #EFF6FA;
+	color: #337AB7;
+}
+
+.bg-label:hover {
+	background-color: #337AB7;
+	color: #fff;
+} */
+
+/* Green Theme(NOT USE) */
+/* a, a:active, a:focus, a:hover {
+	color: #008E59;
+}
+
+.bg-label {
+	background-color: #E7F2ED;
+	color: #017E66;
+}
+
+.bg-label:hover {
+	background-color: #017E66;
+	color: #fff;
+} */
+
+.dot{
+	background: #D9534F none repeat scroll 0% 0%;
+	height: 6px;
+	width: 6px;
+	border-radius: 3px;
+	display: inline-block;
+	margin-bottom: 8px;
+}
+.q-newicon a {
+    background: url(/image/new.png) no-repeat scroll right 4px transparent;
+    padding-right: 23px;
+}
+
+
+#qBack2topBtn {
+    display: none;
+    z-index: 1025;
+}
+#qBack2topBtn .back2top-icon-real {
+    background: url("/image/q_back2top_default.png?v=88851cca.png") no-repeat scroll -70px top transparent;
+    height: 57px;
+    overflow: hidden;
+    position: absolute;
+    width: 57px;
+}
+#qBack2topBtn .back2top-icon-bg {
+    height: 40px;
+    left: 7px;
+    overflow: hidden;
+    position: absolute;
+    top: 7px;
+    width: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Copy from other project */
+
+/* <!-- Fixed navbar --> */
+    /* <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="<%=basePath %>main.do">SB Admin v2.0 后台管理系统</a>
+        </div>
+      </div>
+    </nav> */
+    
+/* .navbar-brand {
+	height:70px;
+	padding-top:25px;
+	padding-bottom:25px;
+}
+
+
+.page-header {
+	margin-top: 20px;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.navbar-default {
+	background: transparent none repeat scroll 0% 0%;
+}
+
+.navbar-nav > li > a {
+    padding-top: 25px;
+    padding-bottom: 25px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 主题演示一 */
+body {
+	font-family: Tahoma,Helvetica,"Microsoft Yahei",Arial,STHeiti;
+}
+.navbar-inverse {
+	background: #3FA7CB;
+	border-color: #4EB2D4;
+}
+.navbar-inverse .navbar-brand {
+    color: #eee;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #eee;
+    font-size: 16px;
+}
+.navbar-inverse .navbar-nav:first-child>li:hover {
+    background: #4EB2D4;
+    transition: color 0.15s linear 0s, background-color 0.3s linear 0s;
+}
+.navbar-inverse .navbar-toggle, 
+.navbar-inverse .navbar-collapse {
+    border-color: #4EB2D4;
+}
+.navbar-inverse .navbar-toggle:hover, 
+.navbar-inverse .navbar-toggle:focus {
+    background: #4EB2D4;
+}
+
+.navbar-inverse .navbar-collapse.collapse.in {
+	background: #3FA7CB;
+}
+
+.well {
+    background: url("/image/17KjauGTqn.jpg");
+    color: #eee;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+.well a, .well p {
+    color: #eee;
+}
+.well a:hover, .well a:focus {
+    color: #fff;
+}

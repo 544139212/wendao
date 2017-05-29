@@ -1,0 +1,166 @@
+
+
+
+
+
+
+.dis-tab-wrap {
+	display: table; width: 100%; border-collapse: separate; border-spacing: 5px;
+}
+
+.dis-tab-cell-wrap {
+	display: table-cell;
+}
+
+
+label {
+	font-size:14px;/*  color: #a1a1a1; */
+}
+
+/* textfield */
+.text_wrap{
+	height:40px;
+	background:#fff/*  url(../image/icons.png) no-repeat right -24px */;
+	border:1px solid #E4E4E4;
+	cursor:pointer;
+	position:relative;
+	_filter:alpha(opacity=0);
+	margin-bottom: 25px;
+}
+
+.text_wrap .textfield{
+	width:100%; 
+	height:40px; 
+	border:none; 
+	line-height:40px; 
+	z-index:4;
+	position:absolute;
+	top:0;
+	left:0;
+	margin:0;
+	padding:0; 
+	*margin-top:12px; 
+	filter:alpha(opacity=0);
+	cursor:pointer;
+	font-size: 12px;
+	font-family: "Microsoft YaHei",΢���ź�,"Microsoft JhengHei",����ϸ��,STHeiti,MingLiu;
+}
+
+	
+/* select */	
+.select_wrap{
+	height:40px;background:#fff url(/image/other/icons.png) no-repeat right -24px;
+	border:1px solid #E4E4E4;cursor:pointer;position:relative;_filter:alpha(opacity=0);
+	margin-bottom: 25px;
+}
+.select_wrap span{
+	padding:0;z-index:2; line-height: 40px; height: 40px; display: block;font-size: 12px;
+}
+.select_wrap .select{
+	width:100%; 
+	height:40px; 
+	border:none; 
+	line-height:40px; 
+	z-index:4;
+	position:absolute;
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+	opacity:0; 
+	*margin-top:12px; 
+	filter:alpha(opacity=0);
+	cursor:pointer; 
+	font-size: 12px;
+	font-family: "Microsoft YaHei",΢���ź�,"Microsoft JhengHei",����ϸ��,STHeiti,MingLiu;
+}
+
+
+
+
+
+/* radio */
+.radio_wrap {
+	height:40px;background:#fff;
+	border:1px solid #E4E4E4;cursor:pointer;position:relative;_filter:alpha(opacity=0);
+	margin-bottom: 25px;
+}
+.radio_wrap span {
+	padding:0;z-index:2; line-height: 40px; height: 40px; display: block;/* font-size: 12px; */
+}
+.radio_wrap .real-val {
+	width:100%; 
+	height:40px; 
+	border:none; 
+	line-height:40px; 
+	z-index:4;
+	position:absolute;
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+	/* opacity:0; */ 
+	*margin-top:12px;   /* for !IE */
+	margin-top:1px;		/* for IE */
+	filter:alpha(opacity=0);
+	cursor:pointer; 
+	font-size: 12px;
+	font-family: "Microsoft YaHei",΢���ź�,"Microsoft JhengHei",����ϸ��,STHeiti,MingLiu;
+}
+.radio_wrap .radio {
+	opacity: 0;
+	cursor: pointer;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	margin-left: 22px;
+	margin-right: 10px;
+}
+.radio_wrap .radio:first-child {
+	margin-left: 2px;
+}
+	
+	
+/* check*/
+.face-val {
+	padding: 0 9px;
+	cursor: pointer;
+	
+	margin-right: 44px;
+	background-image: url(/image/other/inputradio.gif);
+	background-repeat: no-repeat;
+	background-position: -27px 0;
+}
+.on {
+	background-position: -2px 0;
+}
+.piaochecked {
+	width: 20px;
+	height: 20px;
+	float: left;
+	cursor: pointer;
+	margin-left: 10px;
+	text-align: center;
+	background-image: url(/image/other/checkbox_01.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+.on_check {
+	background-position: 0 -21px;
+}
+
+
+/* submit */
+.dguide-sub .btn{width: 100%; text-align: center; line-height: 64px; font-size: 20px; border: none; }
+.dguide-sub .btn-yellow{background: #F06A26; color: #fff; font-family: Microsoft Yahei, Helvetica,arial;}
+
+
+
+
+
+.css-filter {
+	FILTER: 'progid:DXImageTransform.Microsoft.Gradient(gradientType=1,startColorStr=#f8f8f8,endColorStr=#fff)';
+	background:-moz-linear-gradient(left,#f8f8f8,#fff);			
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f8f8), to(#fff));
+}
+
+

@@ -1,0 +1,5 @@
+.ellipsis {
+	display: inherit;
+	overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+	-moz-binding: url('ellipsis.xml#ellipsis');
+}
