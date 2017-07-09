@@ -119,7 +119,7 @@ public class SearchPageData<T> {
 	}
 	
 	public int getTotalPages() {
-		return (totalRecords + pageSize - 1) / pageSize;
+		return totalRecords == 0 ? 1 : (totalRecords + pageSize - 1) / pageSize;
 	}
 	
 	public int getBegin() {

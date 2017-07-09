@@ -6,6 +6,8 @@ public class BlogData {
     private Integer id;
 
     private String title;
+
+    private String image;
     
     private String summary;
 
@@ -21,6 +23,14 @@ public class BlogData {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();;
     }
 
     public String getTitle() {

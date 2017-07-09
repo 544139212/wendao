@@ -5,6 +5,10 @@ package com.example.controller;
 
 import java.util.List;
 
+import com.example.enums.ErrorCodeEnum;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.example.data.BlogData;
 import com.example.data.LinkData;
 import com.example.data.SearchPageData;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author Administrator
@@ -26,6 +31,8 @@ import com.example.data.SearchPageData;
 @RequestMapping(value = "/u")
 @SessionAttributes(value = {"blogData", "linkData"})
 public class UserController extends BaseController {
+
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String goUser(final Model model) {
@@ -78,12 +85,25 @@ public class UserController extends BaseController {
 	}
 	
 	@RequestMapping(value = "/blog/save", method=RequestMethod.POST)
-	public String goBlogSave(final Model model,
+	public String goBlogSave(final RedirectAttributes redirectAttributes,
 			@ModelAttribute(value = "blogData") final BlogData blogData) {
+		super.setRedirectAttributes(redirectAttributes);
+
+		boolean flag = false;
+		if (StringUtils.isEmpty(blogData.getTitle())) {
+			addErrorMessage(ErrorCodeEnum.E0001.getMsg());
+			flag = true;
+		}
 		if (blogData.getId() == null) {
+			if (flag) {
+				return "redirect:/u/blog/create";
+			}
 			blogData.setCreateby(getCurrentUser().getEmail());
 			blogFacade.insertSelective(blogData);
 		} else {
+			if (flag) {
+				return "redirect:/u/blog/update/" + blogData.getId();
+			}
 			blogFacade.updateByPrimaryKeySelective(blogData);
 		}
 		

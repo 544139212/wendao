@@ -3,15 +3,16 @@
  */
 package com.example.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.enums.ContentTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,6 +98,48 @@ public class ImageController extends BaseController {
 	        }     
 	    }
 	}
+
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public void download(HttpServletRequest request, HttpServletResponse response) {
+		ServletContext ctx = request.getSession().getServletContext();
+
+		String scope = request.getParameter("scope");
+		//String type = request.getParameter("type");
+		String fileName = request.getParameter("fileName");
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("multipart/form-data");
+		response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
+
+		OutputStream out = null;
+		InputStream in = null;
+		try {
+			String filePath = ctx.getRealPath("/upload" + "/"/* + type + "/"*/ + scope + "/" + URLEncoder.encode(fileName, "UTF-8"));
+			in = new FileInputStream(filePath);
+			out = response.getOutputStream();
+
+			byte[] buffer = new byte[1024];
+			int i = 0;
+			while((i = in.read(buffer)) > 0){
+				out.write(buffer, 0, i);
+			}
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) {
+					out.flush();
+					out.close();
+				}
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
@@ -127,19 +170,11 @@ public class ImageController extends BaseController {
         	}
     	}
 	}
-	
+
 	protected String getSuffix(String contentType) {
-		if ("image/jpeg".equals(contentType)) {
-			return ".jpg";
-		} 
-		if ("image/png".equals(contentType)) {
-			return ".png";
-		} 
-		if ("image/bmp".equals(contentType)) {
-			return ".bmp";
-		} 
-		if ("image/gif".equals(contentType)) {
-			return ".gif";
+		ContentTypeEnum contentTypeEnum = ContentTypeEnum.getContentType(contentType);
+		if (contentType != null) {
+			return contentTypeEnum.getExtension();
 		}
 		return "";
 	}

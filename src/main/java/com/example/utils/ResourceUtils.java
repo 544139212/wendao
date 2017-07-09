@@ -21,7 +21,7 @@ public class ResourceUtils {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ResourceUtils.class);
 	
-	private static final String EMAIL_CONFIG_FILE = "com/example/config/email.properties";
+	private static final String EMAIL_CONFIG_FILE = "email.properties";
 	
 	private ResourceUtils() {
 		

@@ -27,28 +27,16 @@
     	<!-- Custom styles for this template -->
     	<link href="/css/sticky-footer-navbar.css" rel="stylesheet" />
     	
-    	<script src="/js/jquery-3.1.0.min.js"></script>
-    	<script src="/js/bootstrap.min.js"></script>
-    	
-    	
-    	
+
+
+
+		<link href="/css/summernote/summernote.css" rel="stylesheet" />
+
+		<link href="/dist/css/AdminLTE.upload.css" rel="stylesheet" />
+
     	<link href="/css/ellipsis/ellipsis.css" rel="stylesheet" />
 
-		<script type="text/javascript">
-		function trim(obj){
-			var ui = obj.value;
-		    var notValid=/(^\s)|(\s$)/;  
-		        while(notValid.test(ui)){  
-		           ui=ui.replace(notValid,"");
-		        }
-		    obj.value = ui;
-		    return ui;
-		}
-		
-		$("input").on("change", function() {
-			$(this).val($.trim($(this).val()));
-		}).trigger("change");
-		</script>
+
 		
 		
 		
@@ -81,5 +69,28 @@
 		</div>
 		<!-- Footer Page -->
 		<tiles:insertAttribute name="footer" />
+
+
+		<script src="/js/jquery-3.1.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/summernote/summernote.js"></script>
+		<script src="/js/summernote/summernote-zh-CN.js"></script>
+		<script src="/plugins/jQueryCropbox/cropbox.js"></script>
+
+		<script type="text/javascript">
+            function trim(obj){
+                var ui = obj.value;
+                var notValid=/(^\s)|(\s$)/;
+                while(notValid.test(ui)){
+                    ui=ui.replace(notValid,"");
+                }
+                obj.value = ui;
+                return ui;
+            }
+
+            $("input").on("change", function() {
+                $(this).val($.trim($(this).val()));
+            }).trigger("change");
+		</script>
 	</body>
 </html>
