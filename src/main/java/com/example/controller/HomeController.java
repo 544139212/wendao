@@ -20,6 +20,9 @@ import com.example.email.EmailSender;
 import com.example.utils.PasswordUtils;
 import com.example.utils.VerifyCodeUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Administrator
  *
@@ -35,6 +38,18 @@ public class HomeController extends BaseController {
 	public String index(final Model model) {
 		
 		return "home";
+	}
+
+	@RequestMapping(value = "/goVideo", method = RequestMethod.GET)
+	public String goVideo(final Model model) {
+		List<Integer> videoTypeList = new ArrayList<>();
+		videoTypeList.add(1);
+		videoTypeList.add(2);
+		videoTypeList.add(3);
+
+		model.addAttribute("videoTypeList", videoTypeList);
+
+		return "video";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
