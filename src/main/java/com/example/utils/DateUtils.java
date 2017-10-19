@@ -46,4 +46,27 @@ public class DateUtils {
 			return diff/12/30/24/60/60 + " 年以前";
 		}
 	}
+
+
+
+
+
+
+	final static String PATTERN2 = "yyyy-MM-dd";
+
+	public static String date2str(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat(PATTERN2);
+		return sdf.format(date);
+	}
+
+	public static Date str2date(String str) {
+		SimpleDateFormat sdf = new SimpleDateFormat(PATTERN2);
+		Date date = null;
+		try {
+			date = sdf.parse(str);
+		} catch (ParseException e) {
+
+		}
+		return date;
+	}
 }
