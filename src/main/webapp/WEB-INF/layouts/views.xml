@@ -54,5 +54,9 @@
 	<definition name="publishLink" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/publish_link.jsp" />
 	</definition>
+
+	<definition name="video" extends="template1">
+		<put-attribute name="body" value="/WEB-INF/views/video.jsp" />
+	</definition>
 	
 </tiles-definitions>

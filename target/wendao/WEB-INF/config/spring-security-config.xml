@@ -39,6 +39,10 @@
 		
 		<security:intercept-url pattern="/password/change" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
 		<security:intercept-url pattern="/u/**" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+		<security:intercept-url pattern="/*/delete" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+		<security:intercept-url pattern="/*/create" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+		<security:intercept-url pattern="/*/update" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+		<security:intercept-url pattern="/*/save" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
 
 		<!-- j_spring_security_logout -->
 		<security:logout logout-url="/j_spring_security_logout" logout-success-url="/" 
