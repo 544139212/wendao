@@ -59,7 +59,7 @@ public class LocationDao implements IDAO<LocationModel> {
 		sql.append(" from t_location");
 		sql.append(" where createBy = ?");
 		sql.append(" order by createTime desc");
-		sql.append(" limit 10");
+//		sql.append(" limit 10");
 		
 //		return jdbcTemplate.query(sql.toString(), LocationModel.class, createBy);
 		return jdbcTemplate.query(sql.toString(), new LocationModel(), createBy);
