@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/4/24.
  */
@@ -7,8 +9,7 @@ public class Result {
 
     private int code;
     private String msg;
-    private Object data;
-    private int count;
+    private List list;
 
     public Result() {
 
@@ -18,17 +19,10 @@ public class Result {
         this.code = code;
         this.msg = msg;
     }
-    public Result(int code, String msg, Object data) {
+    public Result(int code, String msg, List list) {
         this.code = code;
         this.msg = msg;
-        this.data = data;
-    }
-
-    public Result(int code, String msg, Object data, int count) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-        this.count = count;
+        this.list = list;
     }
 
     public void setCode(int code) {
@@ -47,19 +41,13 @@ public class Result {
         return msg;
     }
 
-    public void setData(Object data) {
-        this.data = data == null ? "" : data;
-    }
+	public List getList() {
+		return list;
+	}
 
-    public Object getData() {
-        return data;
-    }
+	public void setList(List list) {
+		this.list = list;
+	}
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
+    
 }

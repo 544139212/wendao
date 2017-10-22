@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.data.LinkData;
 import com.example.data.SearchPageData;
+import com.example.dto.Result;
 
 /**
  * @author Administrator
@@ -44,5 +46,14 @@ public class LinkController extends BaseController {
 		LinkData linkData = linkFacade.selectByPrimaryKey(id);
 		model.addAttribute("linkData", linkData);
 		return "link";
+	}
+	
+	@RequestMapping(value = "/getLinks", method = RequestMethod.GET)
+	@ResponseBody
+	public Result getLinks(final Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") final int pageNo) {
+		List<LinkData> results = linkFacade.selectPageable(null, (pageNo-1) * pageSize, pageSize);
+		Result result = new Result(200, "成功", results);
+		return result;
 	}
 }

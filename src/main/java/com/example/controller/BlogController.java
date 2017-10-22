@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.data.BlogData;
 import com.example.data.SearchPageData;
+import com.example.dto.Result;
 
 /**
  * @author Administrator
@@ -59,5 +60,13 @@ public class BlogController extends BaseController {
 		data.setTotalRecords(totalCounts);
 		
 		return data;
+	}
+	
+	@RequestMapping(value = "/getBlogs", method = RequestMethod.GET)
+	@ResponseBody
+	public Result getBlogs(@RequestParam(value = "page", required = false, defaultValue = "1") final int pageNo) {
+		List<BlogData> results = blogFacade.selectPageable(null, (pageNo-1) * pageSize, pageSize);
+		Result result = new Result(200, "成功", results);
+		return result;
 	}
 }
