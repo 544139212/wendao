@@ -3,16 +3,8 @@
  */
 package com.example.controller;
 
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.UUID;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.example.enums.ContentTypeEnum;
+import com.example.model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +14,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.example.data.UserData;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * @author Administrator
@@ -80,9 +78,9 @@ public class ImageController extends BaseController {
 	    					}
 							file.transferTo(new File(dir, fileName));
 							// update db
-							UserData userData = getCurrentUser();
+							UserModel userData = getCurrentUser();
 							userData.setPhoto(fileName);
-							userFacade.updateByPrimaryKeySelective(userData);
+							userModelMapper.updateByPrimaryKeySelective(userData);
 							out.write("{\"status\":0, \"path\":\"/upload/user/" + fileName + "\"}");
 		    				break;
 		            	}

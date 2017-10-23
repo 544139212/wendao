@@ -3,9 +3,10 @@
  */
 package com.example.controller;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.example.email.EmailSender;
+import com.example.model.UserModel;
+import com.example.utils.PasswordUtils;
+import com.example.utils.VerifyCodeUtils;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.data.UserData;
-import com.example.email.EmailSender;
-import com.example.utils.PasswordUtils;
-import com.example.utils.VerifyCodeUtils;
-
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +62,9 @@ public class HomeController extends BaseController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(final Model model,
-			@ModelAttribute(value = "userData") final UserData userData,
+			@ModelAttribute(value = "userData") final UserModel userData,
 			HttpServletRequest request) {
-		UserData existUserData = userFacade.selectByCode(userData.getEmail());
+		UserModel existUserData = userModelMapper.selectByCode(userData.getEmail());
 		if (existUserData != null) {
 			// 用户已存在，直接返回
 			return "redirect:register";
@@ -100,7 +98,7 @@ public class HomeController extends BaseController {
 			String password = md5PasswordEncoder.encodePassword(generatePassword, userData.getEmail());
 			
 			userData.setPassword(password);
-			userFacade.insertSelective(userData);
+			userModelMapper.insertSelective(userData);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -199,12 +197,12 @@ public class HomeController extends BaseController {
 		
 		String email = (String)request.getSession().getAttribute("email");
 		
-		UserData userData = userFacade.selectByCode(email);
+		UserModel userData = userModelMapper.selectByCode(email);
 		Md5PasswordEncoder md5PasswordEncoder = new Md5PasswordEncoder();
 		String password = md5PasswordEncoder.encodePassword(newPassword, userData.getEmail());
 		
 		userData.setPassword(password);
-		userFacade.updateByPrimaryKeySelective(userData);
+		userModelMapper.updateByPrimaryKeySelective(userData);
 		
 		request.getSession().removeAttribute("email");
 		request.getSession().removeAttribute("verifyCodeStore");

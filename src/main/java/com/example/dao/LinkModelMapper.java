@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.model.LinkModel;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface LinkModelMapper {
     int deleteByPrimaryKey(Integer id);
 

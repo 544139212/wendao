@@ -3,25 +3,24 @@
  */
 package com.example.controller;
 
-import java.util.List;
-
-import com.example.enums.ErrorCodeEnum;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
+import com.example.dao.BlogModelMapper;
+import com.example.dao.LinkModelMapper;
 import com.example.data.BlogData;
 import com.example.data.LinkData;
 import com.example.data.SearchPageData;
+import com.example.enums.ErrorCodeEnum;
+import com.example.model.BlogModel;
+import com.example.model.LinkModel;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * @author Administrator
@@ -33,12 +32,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UserController extends BaseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+	@Autowired
+	BlogModelMapper blogModelMapper;
+
+	@Autowired
+	LinkModelMapper linkModelMapper;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String goUser(final Model model) {
 		String createBy = getCurrentUser().getEmail();
-		int blogCount = blogFacade.selectPageableCount(createBy);
-		int linkCount = linkFacade.selectPageableCount(createBy);
+		int blogCount = blogModelMapper.selectPageableCount(createBy);
+		int linkCount = linkModelMapper.selectPageableCount(createBy);
 		model.addAttribute("blogCount", blogCount);
 		model.addAttribute("linkCount", linkCount);
 		model.addAttribute("starLevel", blogCount/10 + linkCount/200);
@@ -49,9 +54,9 @@ public class UserController extends BaseController {
 	public String goBlog(final Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") final int pageNo) {
 		String createBy = getCurrentUser().getEmail();
-		List<BlogData> results = blogFacade.selectPageable(createBy, (pageNo-1) * pageSize, pageSize);
-		int totalCounts = blogFacade.selectPageableCount(createBy);
-		final SearchPageData<BlogData> data = new SearchPageData<BlogData>();
+		List<BlogModel> results = blogModelMapper.selectPageable(createBy, (pageNo-1) * pageSize, pageSize);
+		int totalCounts = blogModelMapper.selectPageableCount(createBy);
+		final SearchPageData<BlogModel> data = new SearchPageData<BlogModel>();
 		data.setPageNo(pageNo);
 		data.setPageSize(pageSize);
 		data.setResults(results);
@@ -78,7 +83,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/blog/update/{id}", method=RequestMethod.GET)
 	public String goBlogUpdate(final Model model, 
 			@PathVariable(value = "id") final Integer id) {
-		BlogData blogData = blogFacade.selectByPrimaryKey(id);
+		BlogModel blogData = blogModelMapper.selectByPrimaryKey(id);
 		model.addAttribute("blogData", blogData);
 		
 		return "publishBlog";
@@ -86,7 +91,7 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/blog/save", method=RequestMethod.POST)
 	public String goBlogSave(final RedirectAttributes redirectAttributes,
-			@ModelAttribute(value = "blogData") final BlogData blogData) {
+			@ModelAttribute(value = "blogData") final BlogModel blogData) {
 		super.setRedirectAttributes(redirectAttributes);
 
 		boolean flag = false;
@@ -99,12 +104,12 @@ public class UserController extends BaseController {
 				return "redirect:/u/blog/create";
 			}
 			blogData.setCreateby(getCurrentUser().getEmail());
-			blogFacade.insertSelective(blogData);
+			blogModelMapper.insertSelective(blogData);
 		} else {
 			if (flag) {
 				return "redirect:/u/blog/update/" + blogData.getId();
 			}
-			blogFacade.updateByPrimaryKeySelective(blogData);
+			blogModelMapper.updateByPrimaryKeySelective(blogData);
 		}
 		
 		return "redirect:/u/blog";
@@ -113,7 +118,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/blog/delete/{id}", method=RequestMethod.GET)
 	public String goBlogDelete(final Model model, 
 			@PathVariable(value = "id") final Integer id) {
-		blogFacade.deleteByPrimaryKey(id);
+		blogModelMapper.deleteByPrimaryKey(id);
 		return "redirect:/u/blog";
 	}
 	
@@ -121,9 +126,9 @@ public class UserController extends BaseController {
 	public String goLink(final Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") final int pageNo) {
 		String createBy = getCurrentUser().getEmail();
-		List<LinkData> results = linkFacade.selectPageable(createBy, (pageNo-1) * pageSize, pageSize);
-		int totalCounts = linkFacade.selectPageableCount(createBy);
-		final SearchPageData<LinkData> data = new SearchPageData<LinkData>();
+		List<LinkModel> results = linkModelMapper.selectPageable(createBy, (pageNo-1) * pageSize, pageSize);
+		int totalCounts = linkModelMapper.selectPageableCount(createBy);
+		final SearchPageData<LinkModel> data = new SearchPageData<>();
 		data.setPageNo(pageNo);
 		data.setPageSize(pageSize);
 		data.setResults(results);
@@ -144,7 +149,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/link/update/{id}", method=RequestMethod.GET)
 	public String goLinkUpdate(final Model model, 
 			@PathVariable(value = "id") final Integer id) {
-		LinkData linkData = linkFacade.selectByPrimaryKey(id);
+		LinkModel linkData = linkModelMapper.selectByPrimaryKey(id);
 		model.addAttribute("linkData", linkData);
 		
 		return "publishLink";
@@ -152,12 +157,12 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/link/save", method=RequestMethod.POST)
 	public String goLinkSave(final Model model,
-		@ModelAttribute(value = "linkData") final LinkData linkData) {
+		@ModelAttribute(value = "linkData") final LinkModel linkData) {
 		if (linkData.getId() == null) {
 			linkData.setCreateby(getCurrentUser().getEmail());
-			linkFacade.insertSelective(linkData);
+			linkModelMapper.insertSelective(linkData);
 		} else {
-			linkFacade.updateByPrimaryKeySelective(linkData);
+			linkModelMapper.updateByPrimaryKeySelective(linkData);
 		}
 		
 		return "redirect:/u/link";
@@ -166,7 +171,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/link/delete/{id}", method=RequestMethod.GET)
 	public String goLinkDelete(final Model model, 
 			@PathVariable(value = "id") final Integer id) {
-		linkFacade.deleteByPrimaryKey(id);
+		linkModelMapper.deleteByPrimaryKey(id);
 		return "redirect:/u/link";
 	}
 	
