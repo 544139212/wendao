@@ -68,7 +68,7 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/blog/create", method=RequestMethod.GET)
 	public String goBlogCreate(final Model model) {
-		BlogData blogData = new BlogData();
+		BlogModel blogData = new BlogModel();
 		model.addAttribute("blogData", blogData);
 		// When click edit(then click save or not click save), go to create page, the edit data stay on the page.
 		// because we store the data in the @SessionAttribute
@@ -140,7 +140,7 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/link/create", method=RequestMethod.GET)
 	public String goLinkCreate(final Model model) {
-		LinkData linkData = new LinkData();
+		LinkModel linkData = new LinkModel();
 		model.addAttribute("linkData", linkData);
 		
 		return "publishLink";

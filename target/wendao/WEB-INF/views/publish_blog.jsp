@@ -29,11 +29,6 @@
 				<input type="text" class="form-control" id="title" placeholder="标题" name="title" value="${blogData.title }" maxlength="500" required>
 			</div>
 			<div class="form-group">
-				<label class="sr-only" for="image">封面图</label>
-				<upload:upload type="image" scope="${scope }" value="${blogData.image }" number="${number }" />
-				<input type="hidden" class="form-control imageHidden" id="image" placeholder="图片" name="image" value="${blogData.image }" maxlength="1000" required>
-			</div>
-			<div class="form-group">
 				<label class="sr-only" for="summary">概要</label>
 				<input type="hidden" class="form-control" id="summary" placeholder="概要" name="summary" value="${blogData.summary }">
 			</div>
