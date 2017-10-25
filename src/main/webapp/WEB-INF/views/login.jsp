@@ -31,7 +31,7 @@
 								账户已锁定
 							</c:when>
 							<c:otherwise>
-								登录异常，请稍后再试
+								登录异常，请稍后再试${SPRING_SECURITY_LAST_EXCEPTION.message}
 							</c:otherwise>
 						</c:choose>
 					</div>
