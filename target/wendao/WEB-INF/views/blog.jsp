@@ -6,19 +6,17 @@
 
 <div class="row">
 	<div class="col-xs-12 col-md-8">
-		<div>
-		<div class="page-header"> 
+		<div class="page-header">
 			<h4>${blogData.title }</h4>
 		</div>
 		<c:out value="${blogData.content }" escapeXml="false"></c:out>
 		<hr>
 		<p class="text-muted">
 			<small>
-				<i class="icon-user"></i> ${blogData.createby }&nbsp; 
+				<i class="icon-user"></i> ${blogData.createby }&nbsp;
 				<i class="icon-time"></i> <fmt:formatDate value="${blogData.createtime }" pattern="yyyy-MM-dd hh:mm:ss" type="date" dateStyle="long" />
 			</small>
 		</p>
-		</div>
 	</div>
 	<!-- /.col-md-8 -->
 	<div class="col-xs-12 col-md-4">

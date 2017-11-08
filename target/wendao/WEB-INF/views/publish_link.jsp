@@ -149,22 +149,12 @@
 		<div class="page-header"> 
 			<h4>发布链接</h4>
 		</div>
-		<form action="/u/link/save" enctype="multipart/form-data" method="post">
-		  	<div class="form-group">
-				<label class="sr-only" for="inputName">标题</label>
-				<input type="text" class="form-control" id="inputName" placeholder="标题" name="name" value="${linkData.name}" maxlength="500" required>
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="inputUrl">URL</label>
-				<input type="text" class="form-control" id="inputUrl" placeholder="URL" name="url" value="${linkData.url}" maxlength="2000" required>
-			</div>
-			<button type="submit" class="btn btn-primary">确认提交</button>
-		</form>
+
 		
 	  	<br><br><br><br>
 	  	
 		<!-- 按钮触发模态框 -->
-		<%--<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">批量上传书签</button>--%>
+		<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">批量上传书签</button>
 		<!-- 模态框（Modal） -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
 			data-backdrop="static" data-keyboard="false">

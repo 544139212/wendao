@@ -4,13 +4,9 @@
 package com.example.controller;
 
 import com.example.dao.BlogModelMapper;
-import com.example.dao.LinkModelMapper;
-import com.example.data.BlogData;
-import com.example.data.LinkData;
 import com.example.data.SearchPageData;
 import com.example.enums.ErrorCodeEnum;
 import com.example.model.BlogModel;
-import com.example.model.LinkModel;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,17 +32,13 @@ public class UserController extends BaseController {
 	@Autowired
 	BlogModelMapper blogModelMapper;
 
-	@Autowired
-	LinkModelMapper linkModelMapper;
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public String goUser(final Model model) {
 		String createBy = getCurrentUser().getEmail();
 		int blogCount = blogModelMapper.selectPageableCount(createBy);
-		int linkCount = linkModelMapper.selectPageableCount(createBy);
 		model.addAttribute("blogCount", blogCount);
-		model.addAttribute("linkCount", linkCount);
-		model.addAttribute("starLevel", blogCount/10 + linkCount/200);
+		model.addAttribute("linkCount", 500);
+		model.addAttribute("starLevel", blogCount/10 + 500/200);
 		return "user";
 	}
 	
@@ -121,58 +113,10 @@ public class UserController extends BaseController {
 		blogModelMapper.deleteByPrimaryKey(id);
 		return "redirect:/u/blog";
 	}
-	
-	@RequestMapping(value = "/link", method = RequestMethod.GET)
-	public String goLink(final Model model,
-			@RequestParam(value = "page", required = false, defaultValue = "1") final int pageNo) {
-		String createBy = getCurrentUser().getEmail();
-		List<LinkModel> results = linkModelMapper.selectPageable(createBy, (pageNo-1) * pageSize, pageSize);
-		int totalCounts = linkModelMapper.selectPageableCount(createBy);
-		final SearchPageData<LinkModel> data = new SearchPageData<>();
-		data.setPageNo(pageNo);
-		data.setPageSize(pageSize);
-		data.setResults(results);
-		data.setTotalRecords(totalCounts);
-		
-		model.addAttribute("linkPageData", data);
-		return "userLinks";
-	}
-	
+
 	@RequestMapping(value = "/link/create", method=RequestMethod.GET)
 	public String goLinkCreate(final Model model) {
-		LinkModel linkData = new LinkModel();
-		model.addAttribute("linkData", linkData);
-		
 		return "publishLink";
 	}
-	
-	@RequestMapping(value = "/link/update/{id}", method=RequestMethod.GET)
-	public String goLinkUpdate(final Model model, 
-			@PathVariable(value = "id") final Integer id) {
-		LinkModel linkData = linkModelMapper.selectByPrimaryKey(id);
-		model.addAttribute("linkData", linkData);
-		
-		return "publishLink";
-	}
-	
-	@RequestMapping(value = "/link/save", method=RequestMethod.POST)
-	public String goLinkSave(final Model model,
-		@ModelAttribute(value = "linkData") final LinkModel linkData) {
-		if (linkData.getId() == null) {
-			linkData.setCreateby(getCurrentUser().getEmail());
-			linkModelMapper.insertSelective(linkData);
-		} else {
-			linkModelMapper.updateByPrimaryKeySelective(linkData);
-		}
-		
-		return "redirect:/u/link";
-	}
-	
-	@RequestMapping(value = "/link/delete/{id}", method=RequestMethod.GET)
-	public String goLinkDelete(final Model model, 
-			@PathVariable(value = "id") final Integer id) {
-		linkModelMapper.deleteByPrimaryKey(id);
-		return "redirect:/u/link";
-	}
-	
+
 }
