@@ -26,15 +26,7 @@
 	<definition name="blog" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/blog.jsp" />
 	</definition>
-	
-	<definition name="links" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/links.jsp" />
-	</definition>
-	
-	<definition name="link" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/link.jsp" />
-	</definition>
-	
+
 	<definition name="user" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/user.jsp" />
 	</definition>
@@ -42,17 +34,9 @@
 	<definition name="userBlogs" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/user_blogs.jsp" />
 	</definition>
-	
-	<definition name="userLinks" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/user_links.jsp" />
-	</definition>
-	
+
 	<definition name="publishBlog" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/publish_blog.jsp" />
-	</definition>
-	
-	<definition name="publishLink" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/publish_link.jsp" />
 	</definition>
 
 	<definition name="video" extends="template1">
