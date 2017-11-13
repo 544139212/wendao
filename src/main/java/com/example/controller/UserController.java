@@ -4,7 +4,6 @@
 package com.example.controller;
 
 import com.example.dao.BlogModelMapper;
-import com.example.data.SearchPageData;
 import com.example.enums.ErrorCodeEnum;
 import com.example.model.BlogModel;
 import org.apache.commons.lang.StringUtils;
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 /**
  * @author Administrator
@@ -41,23 +38,12 @@ public class UserController extends BaseController {
 		model.addAttribute("starLevel", blogCount/10 + 500/200);
 		return "user";
 	}
-	
-	@RequestMapping(value = "/blog", method = RequestMethod.GET)
-	public String goBlog(final Model model,
-			@RequestParam(value = "page", required = false, defaultValue = "1") final int pageNo) {
-		String createBy = getCurrentUser().getEmail();
-		List<BlogModel> results = blogModelMapper.selectPageable(createBy, (pageNo-1) * pageSize, pageSize);
-		int totalCounts = blogModelMapper.selectPageableCount(createBy);
-		final SearchPageData<BlogModel> data = new SearchPageData<BlogModel>();
-		data.setPageNo(pageNo);
-		data.setPageSize(pageSize);
-		data.setResults(results);
-		data.setTotalRecords(totalCounts);
-		
-		model.addAttribute("blogPageData", data);
-		return "userBlogs";
+
+	@RequestMapping(value = "/link/create", method=RequestMethod.GET)
+	public String goLinkCreate(final Model model) {
+		return "publishLink";
 	}
-	
+
 	@RequestMapping(value = "/blog/create", method=RequestMethod.GET)
 	public String goBlogCreate(final Model model) {
 		BlogModel blogData = new BlogModel();
@@ -106,17 +92,7 @@ public class UserController extends BaseController {
 		
 		return "redirect:/u/blog";
 	}
-	
-	@RequestMapping(value = "/blog/delete/{id}", method=RequestMethod.GET)
-	public String goBlogDelete(final Model model, 
-			@PathVariable(value = "id") final Integer id) {
-		blogModelMapper.deleteByPrimaryKey(id);
-		return "redirect:/u/blog";
-	}
 
-	@RequestMapping(value = "/link/create", method=RequestMethod.GET)
-	public String goLinkCreate(final Model model) {
-		return "publishLink";
-	}
+
 
 }

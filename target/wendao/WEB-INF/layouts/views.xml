@@ -18,41 +18,17 @@
 	<definition name="resetPassword" extends="template2">
 		<put-attribute name="body" value="/WEB-INF/views/resetPassword.jsp" />
 	</definition>
-	
-	<definition name="blogs" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/blogs.jsp" />
-	</definition>
-	
-	<definition name="blog" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/blog.jsp" />
-	</definition>
-	
-	<definition name="links" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/links.jsp" />
-	</definition>
-	
-	<definition name="link" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/link.jsp" />
-	</definition>
-	
+
 	<definition name="user" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/user.jsp" />
 	</definition>
 	
-	<definition name="userBlogs" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/user_blogs.jsp" />
+	<definition name="page" extends="template1">
+		<put-attribute name="body" value="/WEB-INF/views/page.jsp" />
 	</definition>
-	
-	<definition name="userLinks" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/user_links.jsp" />
-	</definition>
-	
+
 	<definition name="publishBlog" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/publish_blog.jsp" />
-	</definition>
-	
-	<definition name="publishLink" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/publish_link.jsp" />
 	</definition>
 
 	<definition name="video" extends="template1">

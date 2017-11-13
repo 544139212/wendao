@@ -34,26 +34,6 @@
 
 		<link href="/dist/css/AdminLTE.upload.css" rel="stylesheet" />
 
-    	<link href="/css/ellipsis/ellipsis.css" rel="stylesheet" />
-
-
-		
-		
-		
-		
-		<style>
-		<!--
-		.list-group-item {
-		 border: 1px solid #f2f2f2;
-		}
-		.list-group-item:hover {
-			z-index: 2;
-			border: 1px solid #88D3F9;
-			background: #FAFDFF;
-		}
-		-->
-		</style>
-		
 	</head>
 		
 	<body>

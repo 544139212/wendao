@@ -31,7 +31,7 @@ public class HomeController extends BaseController {
 	
 	@Resource
 	EmailSender emailSender;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(final Model model) {
 		
