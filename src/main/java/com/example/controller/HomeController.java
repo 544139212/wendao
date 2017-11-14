@@ -24,6 +24,11 @@ public class HomeController extends BaseController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String goLogin(final Model model) {
+		return "login";
+	}
+
 	@RequestMapping(value = "/goVideo", method = RequestMethod.GET)
 	public String goVideo(final Model model) {
 		List<Integer> videoTypeList = new ArrayList<>();
@@ -32,6 +37,9 @@ public class HomeController extends BaseController {
 		videoTypeList.add(3);
 
 		model.addAttribute("videoTypeList", videoTypeList);
+
+//		model.addAttribute("threePic", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCr1Iz5swEQ0AIYmAIyCLAFZ24cZv7X,https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCr1Iz5swEQ0AIYmAIyCLAFZ24cZv7X,https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCr1Iz5swEQ0AIYmAIyCLAFZ24cZv7X")
+//		model.addAttribute("onePic", "https://tpc.googlesyndication.com/pagead/imgad?id=CICAgKCr1Iz5swEQ0AIYmAIyCLAFZ24cZv7X");
 
 		return "video";
 	}

@@ -10,8 +10,6 @@
 <%@ attribute name="value" required="true" type="java.lang.String" %>
 <%@ attribute name="number" required="true" type="java.lang.Integer" %>
 
-
-
 <div class="row">
     <c:choose>
         <c:when test="${not empty value }">

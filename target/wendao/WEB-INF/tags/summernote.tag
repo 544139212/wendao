@@ -2,10 +2,6 @@
 <%@ tag body-content="empty" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="ctx" value="${pageContext.request.contextPath }" />
-
-<%@ attribute name="scope" required="true" type="java.lang.String" %>
-
 <div class="text-danger"></div>
 
 <!-- jQuery 3.1.0 -->

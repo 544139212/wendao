@@ -10,21 +10,9 @@
 	<definition name="login" extends="template2">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 	</definition>
-	
-	<definition name="register" extends="template2">
-		<put-attribute name="body" value="/WEB-INF/views/register.jsp" />
-	</definition>
-	
-	<definition name="resetPassword" extends="template2">
-		<put-attribute name="body" value="/WEB-INF/views/resetPassword.jsp" />
-	</definition>
 
 	<definition name="user" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/user.jsp" />
-	</definition>
-
-	<definition name="publishBlog" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/publish_blog.jsp" />
 	</definition>
 
 	<definition name="video" extends="template1">

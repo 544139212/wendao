@@ -1,7 +1,7 @@
 .imagebg {
     width: 100%;
     height: 100%;
-    background-image: url("../img/image.png");
+    background-image: url("/dist/img/image.png");
     background-repeat: no-repeat;
     background-position: center center;
     border: 1px solid #ddd;
@@ -10,7 +10,7 @@
 .videobg {
     width: 100%;
     height: 100%;
-    background-image: url("../img/video.png");
+    background-image: url("/dist/img/video.png");
     background-repeat: no-repeat;
     background-position: center center;
     border: 1px solid #ddd;
@@ -19,7 +19,7 @@
 .filebg {
     width: 100%;
     height: 100%;
-    background-image: url("../img/file.png");
+    background-image: url("/dist/img/file.png");
     background-repeat: no-repeat;
     background-position: center center;
     border: 1px solid #ddd;
