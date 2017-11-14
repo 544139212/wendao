@@ -167,7 +167,7 @@ ul, ol, li {
           		</div>
        		</div>
       		<div style="padding: 20px 0px;margin: 10px 15px;border-top: 1px dashed #DDD;border-bottom: 1px dashed #DDD;text-align: center;font-size: 14px;line-height: 1.42857;">
-			<c:forEach begin="1" end="${starLevel }">
+			<c:forEach begin="1" end="4">
 				<i class="icon-star"></i>
 			</c:forEach>
 			<c:if test="${starLevel % 2 == 1 }">
@@ -175,8 +175,8 @@ ul, ol, li {
 			</c:if>
 		</div>
 		<div class="row">
-			<div class="col-xs-6 text-muted text-center"><a href="/u/blog">博客<br>${blogCount }</a></div>
-			<div class="col-xs-6 text-muted text-center"><a href="/u/link">链接<br>${linkCount }</a></div>
+			<div class="col-xs-6 text-muted text-center"><a href="/u/blog">博客<br>233</a></div>
+			<div class="col-xs-6 text-muted text-center"><a href="/u/link">链接<br>234</a></div>
 		</div>
 	</div>
 </div>

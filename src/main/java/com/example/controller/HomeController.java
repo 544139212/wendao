@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/")
 public class HomeController extends BaseController {
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String index(final Model model) {
 		return "home";
