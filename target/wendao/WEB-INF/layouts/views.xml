@@ -22,10 +22,6 @@
 	<definition name="user" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/user.jsp" />
 	</definition>
-	
-	<definition name="page" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/page.jsp" />
-	</definition>
 
 	<definition name="publishBlog" extends="template1">
 		<put-attribute name="body" value="/WEB-INF/views/publish_blog.jsp" />
