@@ -6,8 +6,6 @@
 <c:set var="number1" value="1" />
 
 <%@ taglib prefix="upload" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="summernote" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="cropbox" tagdir="/WEB-INF/tags" %>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -41,11 +39,6 @@
                     <textarea name="intro" class="form-control" placeholder="介绍" maxlength="1000" required>介绍</textarea>
                 </div>
                 <div class="form-group">
-                    <label>内容</label>
-                    <summernote:summernote />
-                    <textarea id="content" name="content" class="form-control" placeholder="内容" required>内容</textarea>
-                </div>
-                <div class="form-group">
                     <label>封面图(建议尺寸: 250像素 X 130像素)</label>
                     <upload:upload type="image" scope="${scope }" value="${threePic}" number="${number3 }" />
                     <input type="hidden" name="image" class="form-control imageHidden" placeholder="图片" value="${threePic}" maxlength="1000" required>
@@ -56,10 +49,6 @@
                     <input type="hidden" name="image" class="form-control imageHidden" placeholder="图片" value="${onePic}" maxlength="500" required>
                 </div>
             </form>
-            <div class="form-group">
-                <label>图片裁剪</label>
-                <cropbox:cropbox />
-            </div>
         </div>
         <!-- /.col -->
     </div>
