@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
-<c:set var="scope" value="video" />
-<c:set var="number3" value="3" />
-<c:set var="number1" value="1" />
 
-<%@ taglib prefix="upload" tagdir="/WEB-INF/tags" %>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -38,16 +34,7 @@
                     <label>介绍</label>
                     <textarea name="intro" class="form-control" placeholder="介绍" maxlength="1000" required>介绍</textarea>
                 </div>
-                <div class="form-group">
-                    <label>封面图(建议尺寸: 250像素 X 130像素)</label>
-                    <upload:upload type="image" scope="${scope }" value="${threePic}" number="${number3 }" />
-                    <input type="hidden" name="image" class="form-control imageHidden" placeholder="图片" value="${threePic}" maxlength="1000" required>
-                </div>
-                <div class="form-group">
-                    <label>图片(建议尺寸: 950像素 X 350像素)</label>
-                    <upload:upload type="image" scope="${scope }" value="${onePic}" number="${number1 }" />
-                    <input type="hidden" name="image" class="form-control imageHidden" placeholder="图片" value="${onePic}" maxlength="500" required>
-                </div>
+
             </form>
         </div>
         <!-- /.col -->

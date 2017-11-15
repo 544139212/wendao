@@ -12,7 +12,7 @@
 		vertical-align: top;
 	}
 	
-	/* .mui-content {
+	 .mui-content {
 		background-color: #efeff4;
 	}
 	
@@ -24,25 +24,8 @@
 	
 	.cover .cover_img {
 		width: 100%;
-	} */
-	
-	.mui-content {
-		background-color: #efeff4;
-		width: 320px;
-		height: 518px;
 	}
-	
-	.cover {
-		height: 480px;
-		position: relative;
-		overflow: hidden;
-	}
-	
-	.cover .cover_img {
-		width: 100%;
-		height: 100%;
-	}		
-	
+
 	.cover .cover-content {
 		background: transparent url("/image/other/cover-bg.png?v=20151218_17_49") repeat-x scroll 0% 0%;
 		position: absolute;
@@ -130,8 +113,8 @@
 			<div class="cover-content">
 				<p class="title">大地铆钉</p>  
 				<div class="user">
-					<img class="user_img" src="/image/other/201507201450490931.jpg">
-					<p class="user_name">Vincent</p>
+					<img class="user_img" src="/image/img/1.jpg">
+					<p class="user_name">用户名</p>
 				</div>
 			</div>
 		</div>

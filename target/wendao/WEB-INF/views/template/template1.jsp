@@ -27,7 +27,6 @@
 
 
 
-		<link href="/css/summernote/summernote.css" rel="stylesheet" />
 
 		<link href="/dist/css/AdminLTE.upload.css" rel="stylesheet" />
 
@@ -50,9 +49,6 @@
 
 		<script src="/js/jquery-3.1.0.min.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/summernote/summernote.js"></script>
-		<script src="/js/summernote/summernote-zh-CN.js"></script>
-		<script src="/plugins/jQueryCropbox/cropbox.js"></script>
 
 		<script type="text/javascript">
             function trim(obj){
