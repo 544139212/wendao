@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.example.model.BlogModel;
 import org.springframework.stereotype.Repository;
 
 @Repository
