@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/security
-		http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:security="http://www.springframework.org/schema/security"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
-	<!-- <security:http pattern="/" security="none" /> -->
-	
-	<security:global-method-security secured-annotations="enabled" />
+    <!-- <security:http pattern="/" security="none" /> -->
 
-	<security:http 
-		realm="Welcome to Demo Web Application">
-		
-		<security:http-basic />
-		
-		<!-- username-parameter default value is username --> 
-		<!-- password-parameter default value is password --> 
-		<security:form-login
-			username-parameter="email"
-			password-parameter="password"
-			default-target-url="/"
-			login-page="/login"
-			login-processing-url="/j_spring_security_check"
-			authentication-failure-url="/login"/>
-			
-		<!-- token-validity 30 days -->  
-		<!-- remember-me-parameter default value is _spring_security_remember_me -->
-		<security:remember-me data-source-ref="dataSource" 
-			token-validity-seconds="2592000" 
-			remember-me-parameter="rememberMe"/>	
-		
-		<!-- <security:remember-me use-secure-cookie="true"/> -->
-		
-		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
-		
-		<security:intercept-url pattern="/password/change" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
-		<security:intercept-url pattern="/u/**" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
-		<security:intercept-url pattern="/*/delete" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
-		<security:intercept-url pattern="/*/create" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
-		<security:intercept-url pattern="/*/update" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
-		<security:intercept-url pattern="/*/save" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+    <security:global-method-security secured-annotations="enabled" />
 
-		<!-- j_spring_security_logout -->
-		<security:logout logout-url="/j_spring_security_logout" logout-success-url="/" 
-			invalidate-session="true" />
-		<security:csrf disabled="true" />
-	</security:http>
+    <security:http
+            realm="Welcome to Demo Web Application">
+
+        <security:http-basic />
+
+        <!-- username-parameter 默认值是 is username, 这里如不配置，则页面必须使用username作为name属性值 -->
+        <!-- password-parameter 默认值是 is password, 这里如不配置，则页面必须使用password作为name属性值 -->
+        <!-- default-target-url 登陆成功，跳转到/ -->
+        <!-- login-page 登陆页面为/login -->
+        <!-- login-processing-url 登陆处理页面为/j_spring_security_check, 即登陆form提交到这个地址 -->
+        <!-- authentication-failure-url 登陆失败跳转到/login，也可使用authentication-failure-handler-ref 指定登陆失败处理类，如本文件末尾的 LoginFailureHandler，LoginFailureHandler实现AuthenticationFailureHandler类的onAuthenticationFailure方法，在方法中可使用request.getParameter(前面username-parameter或password-parameter的值)获取输入的表单内容，exception即登陆失败的原因，登陆失败的原因也可以直接在jsp页面从session中取，见文章开始处————登陆页面设计 -->
+        <security:form-login
+                username-parameter="email"
+                password-parameter="password"
+                default-target-url="/"
+                login-page="/login"
+                login-processing-url="/j_spring_security_check"
+                authentication-failure-url="/login"/>
+
+        <!-- token-validity 30 days -->
+        <!-- remember-me-parameter 默认值是 _spring_security_remember_me -->
+        <security:remember-me data-source-ref="dataSource"
+                              token-validity-seconds="2592000"
+                              remember-me-parameter="rememberMe"/>
+
+        <!-- <security:remember-me use-secure-cookie="true"/> -->
+
+        <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
+
+        <!-- 代表pattern指定的路径需要XYZ这个角色才可以访问, 其它路径anonymous任何人都可以访问 -->
+        <security:intercept-url pattern="/password/change" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+        <security:intercept-url pattern="/*/delete" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+        <security:intercept-url pattern="/*/create" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+        <security:intercept-url pattern="/*/update" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+        <security:intercept-url pattern="/*/save" access="hasRole('ROLE_XYZ')" requires-channel="any"/>
+
+        <!-- j_spring_security_logout -->
+        <!-- 退出登陆的url为/j_spring_security_logout, 可以设置超链接元素的href为这个值，退出成功的url为/, 即退出成功页面跳转到/ -->
+        <security:logout logout-url="/j_spring_security_logout" logout-success-url="/"
+                         invalidate-session="true" />
+        <security:csrf disabled="true" />
+    </security:http>
 
 
-	<security:authentication-manager alias="authenticationManager">
-		<security:authentication-provider>
-			<security:password-encoder hash="md5">
-				<security:salt-source user-property="username" />
-			</security:password-encoder>
-			
-			<security:jdbc-user-service 
-				data-source-ref="dataSource" 
-				users-by-username-query="select email username, password, case account_locked when 'Y' then 0 else 1 end enabled from t_user where email = ?"
-				authorities-by-username-query="select email username, role authority from t_user where email = ?"
-				role-prefix="ROLE_"/>
-		</security:authentication-provider>
-	</security:authentication-manager>
-	
-	<!-- add authentication-failure-handler-ref="authenticationFailureandler" to security:form-login -->
-	<!-- <bean id="authenticationFailureandler" class="com.example.handler.LoginFailureHandler" /> -->
-	
-</beans>	
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            <security:password-encoder hash="md5">
+                <security:salt-source user-property="username" />
+            </security:password-encoder>
+
+            <security:jdbc-user-service
+                    data-source-ref="dataSource"
+                    users-by-username-query="select email username, password, case account_locked when 'Y' then 0 else 1 end enabled from t_user where email = ?"
+                    authorities-by-username-query="select email username, role authority from t_user where email = ?"
+                    role-prefix="ROLE_"/>
+            <!-- 角色前缀为ROLE_, 数据库role字段只需存XYZ即可满足上面hasRole('ROLE_XYZ') -->
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <!-- add authentication-failure-handler-ref="authenticationFailureandler" to security:form-login -->
+    <!-- <bean id="authenticationFailureandler" class="com.example.handler.LoginFailureHandler" /> -->
+
+</beans>

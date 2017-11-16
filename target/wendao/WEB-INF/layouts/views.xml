@@ -3,20 +3,9 @@
   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="home" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
-	</definition>
-	
-	<definition name="login" extends="template2">
-		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	<definition name="index" extends="template">
+		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
 	</definition>
 
-	<definition name="user" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/user.jsp" />
-	</definition>
-
-	<definition name="video" extends="template1">
-		<put-attribute name="body" value="/WEB-INF/views/video.jsp" />
-	</definition>
-	
+	<definition name="login" template="/WEB-INF/views/login.jsp"></definition>
 </tiles-definitions>

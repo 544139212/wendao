@@ -10,45 +10,7 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-		
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-   		<property name="driverClassName">
-   			<value>com.mysql.jdbc.Driver</value>
-   		</property>
-   		<property name="url">
-   			<value>jdbc:mysql://localhost:3306/kitty</value>
-   		</property>
-   		<property name="username">
-   			<value>root</value>
-   		</property>
-   		<property name="password">
-   			<value>server</value>
-   		</property>
-   	</bean> -->
-   	
-   	<!-- 
-   	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-   		<property name="driverClassName">
-   			<value>com.mysql.jdbc.Driver</value>
-   		</property>
-   		<property name="url">
-   			<value>jdbc:mysql://mysql25643-wendao.j.dnr.kz/kitty?useUnicode=true&amp;characterEncoding=utf-8</value>
-   		</property>
-   		<property name="username">
-   			<value>root</value>
-   		</property>
-   		<property name="password">
-   			<value>c4IFApWUVi</value>
-   		</property>
-   	</bean>
-   	 -->
-   	 
-   	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-   		<property name="dataSource">
-   			<ref bean="dataSource"/>
-   		</property>
-   	</bean>
-   	 
+
    	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
@@ -57,6 +19,21 @@
 			</list>
 		</property>
 	</bean>
+
+	<!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://mysql25643-wendao.j.dnr.kz/kitty?useUnicode=true&amp;characterEncoding=utf-8</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>c4IFApWUVi</value>
+		</property>
+	</bean>-->
 
 	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">

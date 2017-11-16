@@ -35,12 +35,7 @@
 	</mvc:annotation-driven>
     <mvc:resources location="/css/" mapping="/css/**" />
     <mvc:resources location="/image/" mapping="/image/**" />
-    <mvc:resources location="/fonts/" mapping="/fonts/**" />
     <mvc:resources location="/js/" mapping="/js/**" />
-    <mvc:resources location="/less/" mapping="/less/**" />
-    <mvc:resources location="/scss/" mapping="/scss/**" />
-	<mvc:resources location="/dist/" mapping="/dist/**" />
-	<mvc:resources location="/plugins/" mapping="/plugins/**" />
     <!-- <mvc:default-servlet-handler /> -->
     
 	
@@ -117,6 +112,5 @@
 	
 	<import resource="spring-security-config.xml"/>
 	<import resource="spring-mybatis-config.xml"/>
-	<!--<import resource="spring-mail-config.xml"/>-->
 	<!--<import resource="spring-*.xml"/>-->
 </beans>

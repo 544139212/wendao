@@ -1,14 +1,8 @@
 package com.example.filter;
 
-import java.io.IOException;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by Administrator on 2017/5/3 0003.
@@ -29,8 +23,6 @@ public class CrossOriginFilter implements Filter {
 
     /**
      *
-     * @author wwhhf
-     * @since 2016/5/30
      * @comment 跨域的设置
      */
     @Override
